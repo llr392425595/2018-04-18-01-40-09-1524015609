@@ -17,8 +17,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   Employee findFirstByNameLikeAndSalaryIsGreaterThan(String character,Integer salary);
 
   //3.找出一个薪资最高且公司ID是*的雇员以及该雇员的姓名
-  @Query("SELECT E1 FROM Employee E1 WHERE E1.companyId = ?1 AND E1.salary = (SELECT MAX(E2.salary) from Employee E2 WHERE E2.companyId = ?1)")
-  Employee findMostSalaryInCompany(int companyId);
+  @Query("SELECT E1.name FROM Employee E1 WHERE E1.companyId = ?1 AND E1.salary = (SELECT MAX(E2.salary) from Employee E2 WHERE E2.companyId = ?1)")
+  String findMostSalaryInCompanyName(Integer companyId);
 
   //4.实现对Employee的分页查询，每页两个数据
   Page<Employee> findAll(Pageable pageable);
