@@ -33,11 +33,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   int replaceName(String name1, String name2);
 
   //7.删除姓名是*的employee
-  @Query(value = "delete from employee where name=?1 ", nativeQuery = true)
-  @Modifying
-  void deleteEmployeeByName(String name);
-
-
-
+  void deleteByName(String name);
 
 }
