@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   //1.查询名字是*的第一个employee
-  Employee findByName(String name);
+  Employee findFirstByName(String name);
 
   //2.找出Employee表中第一个姓名包含`*`字符并且薪资大于*的雇员个人信息
   @Query("FROM Employee e WHERE e.name LIKE ?1 AND e.salary >= ?2")
@@ -37,5 +37,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
   @Query(value = "delete from employee where name=?1 ", nativeQuery = true)
   @Modifying
   void deleteEmployeeByName(String name);
-    //7.删除姓名是*的employee
+
+
+
+
 }

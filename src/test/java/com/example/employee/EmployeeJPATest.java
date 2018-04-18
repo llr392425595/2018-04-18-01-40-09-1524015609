@@ -37,7 +37,7 @@ public class EmployeeJPATest {
         //1.查询名字是小红的employee
         Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
 
-        String actualName = employeeRepository.findByName("xiaohong").getName();
+        String actualName = employeeRepository.findFirstByName("xiaohong").getName();
         assertThat(actualName).isEqualTo(expectedEmployee.getName());
     }
 
@@ -86,7 +86,7 @@ public class EmployeeJPATest {
         //7.删除姓名是xiaohong的employee
         Employee expectedEmployee = new Employee("xiaohong",19,"female",7000,1, 1);
         employeeRepository.deleteEmployeeByName("xiaohong");
-        Employee actualEmployee = employeeRepository.findByName("xiaohong");
+        Employee actualEmployee = employeeRepository.findFirstByName("xiaohong");
         assertThat(actualEmployee).isNull();
     }
 }
