@@ -1,24 +1,36 @@
 package com.example.employee.entity;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Employee {
 
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   private String name;
   private Integer age;
   private String gender;
   private Integer salary;
+
+  @Column(insertable = false, updatable = false)
   private Integer companyId;
 
+  @JoinColumn(name = "companyId")
+  @ManyToOne
+  private Company company;
+
   public Employee() {
+
   }
 
   public Employee(String name, Integer age, String gender, Integer salary,
